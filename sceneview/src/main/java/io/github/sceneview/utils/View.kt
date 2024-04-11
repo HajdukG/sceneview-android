@@ -155,7 +155,7 @@ fun View.pick(
         /** The fragment coordinate in GL convention at the picking query location  */
         fragCoords: Float3
     ) -> Unit
-) = pick(
+) = runCatching {pick(
     xPx.toInt(),
     // Invert the y coordinate since its origin must be at the bottom
     (viewport.height - yPx).toInt(),
@@ -165,7 +165,7 @@ fun View.pick(
         result.renderable,
         result.depth,
         result.fragCoords.toFloat3()
-    )
+    )}
 }
 
 /**
